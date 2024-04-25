@@ -1,0 +1,18 @@
+/* Answer options */
+.answer {
+    margin-top: 10px;
+}
+
+.answer-option {
+    display: block;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Hover effect */
+.answer-option:hover {
+    background-color: #e0e0e0;
+}
