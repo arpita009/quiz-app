@@ -33,13 +33,16 @@ export default function QuizApp() {
             ]
         },
     ];
-    const [questions, setQuestions] = useState(allQuestions);
+    const [currentQuestion, setCurrentQuestion] = useState(0);
     return(
         <>
-            {questions.map(question => <div className="card-container" key={question.id}>
-                <Question question={question}
+            <div className="card-container">
+                <Question question={allQuestions[currentQuestion]}
                 />
-            </div>)}
+                <div className='next-btn'>
+                    <button className="next-button">Next</button>
+                </div>
+            </div>
         </>
     )
 }

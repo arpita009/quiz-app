@@ -10,9 +10,6 @@ export default function Question({question}) {
             {options.map((eachOption, index) => (<Answer eachOption={eachOption}
                                                          index={index}
                                                     key={index}/>))}
-            <div className='next-btn'>
-                <button className="next-button">Next</button>
-            </div>
         </div>
     )
 }
