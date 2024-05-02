@@ -1,7 +1,8 @@
 import './Answer.css';
 import {useRef, useEffect} from "react";
 
-export default function Answer({eachOption, index,optionDisabled, isAnswerOptionDisabled, answerRefs}){
+export default function Answer({eachOption, index,optionDisabled, isAnswerOptionDisabled,
+                                   answerRefs, handleScore}){
     const classNames = `answer ${isAnswerOptionDisabled ? 'disabled-div' : ''}`;
     const optionRef = useRef(null);
 
@@ -13,6 +14,7 @@ export default function Answer({eachOption, index,optionDisabled, isAnswerOption
         optionDisabled();
         if(eachOption.isCorrect){
             optionRef.current.style.color = 'green';
+            handleScore();
         } else {
             optionRef.current.style.color = 'red';
         }
