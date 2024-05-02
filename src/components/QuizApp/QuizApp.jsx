@@ -1,9 +1,13 @@
 import './QuizApp.css';
 import Question from "../Question/Question";
-import {useState, useRef} from "react";
+import {useState} from "react";
 
 export default function QuizApp() {
-    const answerRefs = useRef([]);
+    const [isDisabled, setIsDisabled] = useState(false);
+
+    const handleAnswerOptionDisabled = () => {
+        setIsDisabled(true);
+    }
     const allQuestions = [
         {id:1,
             questionText: 'What is JSX in React?',
@@ -36,13 +40,8 @@ export default function QuizApp() {
     ];
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const handleNextQuestion = () =>{
-        const allAnswerRefs = answerRefs.current;
-        console.log('AnsRefs before', allAnswerRefs)
-        allAnswerRefs.forEach(answerRef => {
-            answerRef.style.color = 'black'; // Reset color to default
-        });
-        console.log('AnsRefs after', allAnswerRefs)
         if(currentQuestion < allQuestions.length-1) {
+            setIsDisabled(false);
             setCurrentQuestion(currentQuestion+1);
         }
     }
@@ -51,7 +50,8 @@ export default function QuizApp() {
             <div className="card-container">
                 <Question question={allQuestions[currentQuestion]}
                           questionsLength = {allQuestions.length}
-                          answerRefs={answerRefs}
+                          isDisabled={isDisabled}
+                          handleAnswerOptionDisabled={handleAnswerOptionDisabled}
                 />
                 <div className='next-btn'>
                     <button className="next-button"

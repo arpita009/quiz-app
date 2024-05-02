@@ -16,3 +16,9 @@
 .answer-option:hover {
     background-color: #e0e0e0;
 }
+
+.disabled-div {
+    pointer-events: none; /* Disable pointer events */
+    opacity: 0.5; /* Optionally reduce opacity to visually indicate disabled state */
+        /* Add any additional styling as needed */
+}
