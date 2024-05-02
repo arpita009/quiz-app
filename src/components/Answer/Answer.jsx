@@ -1,16 +1,19 @@
 import './Answer.css';
-import {useRef} from "react";
+import {useRef, useEffect} from "react";
 
-export default function Answer({eachOption, index,optionDisabled, isAnswerOptionDisabled}){
+export default function Answer({eachOption, index,optionDisabled, isAnswerOptionDisabled, answerRefs}){
     const classNames = `answer ${isAnswerOptionDisabled ? 'disabled-div' : ''}`;
     const optionRef = useRef(null);
+
+    useEffect(() => {
+        answerRefs.current.push(optionRef.current);
+    }, []);
+
     const handleOptionClick = (eachOption) => {
         optionDisabled();
         if(eachOption.isCorrect){
-            console.log('Right answer!');
             optionRef.current.style.color = 'green';
         } else {
-            console.log('wrong answer!');
             optionRef.current.style.color = 'red';
         }
     }

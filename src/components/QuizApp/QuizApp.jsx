@@ -1,9 +1,10 @@
 import './QuizApp.css';
 import Question from "../Question/Question";
-import {useState} from "react";
+import {useState, useRef} from "react";
 
 export default function QuizApp() {
     const [isDisabled, setIsDisabled] = useState(false);
+    const answerRefs = useRef([]);
 
     const handleAnswerOptionDisabled = () => {
         setIsDisabled(true);
@@ -41,6 +42,8 @@ export default function QuizApp() {
     const [currentQuestion, setCurrentQuestion] = useState(0);
     const handleNextQuestion = () =>{
         if(currentQuestion < allQuestions.length-1) {
+            const allAnswersRef = answerRefs.current;
+            allAnswersRef.forEach(answerRef => answerRef.style.color = 'black');
             setIsDisabled(false);
             setCurrentQuestion(currentQuestion+1);
         }
@@ -52,6 +55,7 @@ export default function QuizApp() {
                           questionsLength = {allQuestions.length}
                           isDisabled={isDisabled}
                           handleAnswerOptionDisabled={handleAnswerOptionDisabled}
+                          answerRefs={answerRefs}
                 />
                 <div className='next-btn'>
                     <button className="next-button"

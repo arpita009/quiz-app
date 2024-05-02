@@ -1,7 +1,7 @@
 import './Question.css';
 import Answer from "../Answer/Answer";
 
-export default function Question({question, questionsLength, isDisabled, handleAnswerOptionDisabled}) {
+export default function Question({question, questionsLength, isDisabled, handleAnswerOptionDisabled, answerRefs}) {
     const {id, questionText, options} = question;
     return(
         <div className="card">
@@ -9,6 +9,7 @@ export default function Question({question, questionsLength, isDisabled, handleA
             <div className="question">{questionText}</div>
             {options.map((eachOption, index) => (<Answer eachOption={eachOption} isAnswerOptionDisabled={isDisabled}
                                                          index={index} optionDisabled={handleAnswerOptionDisabled}
+                                                         answerRefs={answerRefs}
                                                     key={index}/>))}
         </div>
     )
